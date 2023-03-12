@@ -34,7 +34,7 @@
     <version>0.1.0</version>
     <packaging>jar</packaging>
     <name>slf4j-elf4j</name>
-    <description>SLF4J binding to use ELF4J native implementation</description>
+    <description>SLF4J binding to use ELF4J native logging implementation</description>
 
     <url>https://github.com/elf4j/slf4j-elf4j</url>
     <licenses>
