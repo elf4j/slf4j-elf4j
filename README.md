@@ -1,10 +1,11 @@
 # slf4j-elf4j
 
-A SLF4J binding to use slf4j-elf4j logging service
+An [SLF4J](https://www.slf4j.org/) binding to use [elf4j-impl](https://github.com/elf4j/elf4j-impl) logging service
 
 ## User Story
 
-As an SLF4J logging API user, I want to opt to use the slf4j-elf4j as the logging service provider.
+As an [SLF4J](https://www.slf4j.org/) logging API user, I want to opt to
+use [elf4j-impl](https://github.com/elf4j/elf4j-impl) as the runtime logging service provider.
 
 ## Prerequisite
 
@@ -18,4 +19,4 @@ As an SLF4J logging API user, I want to opt to use the slf4j-elf4j as the loggin
 ## Use it...
 
 Similar to other SLF4J compatible implementations, include this library as a runtime scope dependency in Maven or other
-build tools alike.
+build tools alike. The usual [elf4j-impl configurations](https://github.com/elf4j/elf4j-impl#configuration) apply.
