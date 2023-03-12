@@ -37,6 +37,9 @@ import org.slf4j.spi.LoggingEventAware;
 
 import java.util.EnumMap;
 
+/**
+ *
+ */
 public class Elf4jLogger implements Logger, LoggingEventAware {
     private static final EnumMap<org.slf4j.event.Level, Level> SLF4J_EVENT_TO_ELF4J_LEVEL_MAP =
             new EnumMap<>(org.slf4j.event.Level.class);
@@ -53,6 +56,9 @@ public class Elf4jLogger implements Logger, LoggingEventAware {
 
     private final NativeLogger nativeLogger;
 
+    /**
+     * @param nativeLogger wrapped elf4j-impl logger
+     */
     public Elf4jLogger(NativeLogger nativeLogger) {
         this.nativeLogger = nativeLogger;
     }
