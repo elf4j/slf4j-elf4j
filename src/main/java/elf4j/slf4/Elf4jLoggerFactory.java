@@ -25,7 +25,7 @@
 
 package elf4j.slf4;
 
-import elf4j.impl.NativeLoggerFactory;
+import elf4j.impl.core.NativeLoggerFactory;
 import org.slf4j.ILoggerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

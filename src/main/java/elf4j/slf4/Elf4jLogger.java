@@ -26,9 +26,9 @@
 package elf4j.slf4;
 
 import elf4j.Level;
-import elf4j.impl.NativeLogger;
-import elf4j.impl.util.StackTraceUtils;
-import elf4j.impl.util.ThreadLocalContext;
+import elf4j.impl.core.NativeLogger;
+import elf4j.impl.core.util.StackTraceUtils;
+import elf4j.impl.core.util.ThreadLocalContext;
 import org.slf4j.Logger;
 import org.slf4j.Marker;
 import org.slf4j.event.LoggingEvent;
