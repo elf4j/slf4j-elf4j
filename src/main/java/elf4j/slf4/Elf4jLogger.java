@@ -27,8 +27,6 @@ package elf4j.slf4;
 
 import elf4j.Level;
 import elf4j.impl.core.NativeLogger;
-import elf4j.impl.core.util.StackTraceUtils;
-import elf4j.impl.core.util.ThreadLocalContext;
 import org.slf4j.Logger;
 import org.slf4j.Marker;
 import org.slf4j.event.LoggingEvent;
@@ -41,10 +39,10 @@ import java.util.EnumMap;
  *
  */
 public class Elf4jLogger implements Logger, LoggingEventAware {
+    private static final Class<?> LOGGING_SERVICE_INTERFACE_SLF4J_FLUENT_API = DefaultLoggingEventBuilder.class;
+    private static final Class<?> LOGGING_SERVICE_INTERFACE_SLF4J_LEGACY_API = Elf4jLogger.class;
     private static final EnumMap<org.slf4j.event.Level, Level> SLF4J_EVENT_TO_ELF4J_LEVEL_MAP =
             new EnumMap<>(org.slf4j.event.Level.class);
-    private static final Class<DefaultLoggingEventBuilder> SLF4J_FLUENT_LOGGING_SERVICE_INTERFACE =
-            DefaultLoggingEventBuilder.class;
 
     static {
         SLF4J_EVENT_TO_ELF4J_LEVEL_MAP.put(org.slf4j.event.Level.TRACE, Level.TRACE);
@@ -374,17 +372,26 @@ public class Elf4jLogger implements Logger, LoggingEventAware {
 
     @Override
     public void log(LoggingEvent event) {
-        if (nativeLogger.getLogService().includeCallerDetail()) {
-            ThreadLocalContext.data().setCallerFrame(StackTraceUtils.callerOf(SLF4J_FLUENT_LOGGING_SERVICE_INTERFACE));
-        }
-        elf4jLog(translate(event.getLevel()), event.getThrowable(), event.getMessage(), event.getArgumentArray());
+        service(nativeLogger.atLevel(translate(event.getLevel())),
+                LOGGING_SERVICE_INTERFACE_SLF4J_FLUENT_API,
+                event.getThrowable(),
+                event.getMessage(),
+                event.getArgumentArray());
     }
 
-    private void elf4jLog(Level level, Throwable t, String msg, Object... args) {
-        nativeLogger.atLevel(level).log(t, msg, args);
+    private void elf4jLog(Level elf4jLevel, Throwable t, String msg, Object... args) {
+        service(nativeLogger.atLevel(elf4jLevel), LOGGING_SERVICE_INTERFACE_SLF4J_LEGACY_API, t, msg, args);
     }
 
     private boolean isEnabled(Level elf4jLevel) {
         return nativeLogger.atLevel(elf4jLevel).isEnabled();
+    }
+
+    private void service(NativeLogger delegate,
+            Class<?> loggingServiceInterface,
+            Throwable t,
+            String msg,
+            Object... args) {
+        delegate.getLogService().log(delegate, loggingServiceInterface, t, msg, args);
     }
 }
