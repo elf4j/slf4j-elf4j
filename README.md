@@ -19,5 +19,5 @@ use [elf4j-impl-core](https://github.com/elf4j/elf4j-impl-core) as the runtime l
 
 ## Use it...
 
-Similar to other SLF4J compatible implementations, include this library as a runtime scope dependency in Maven or other
+Similar to other SLF4J compatible implementations, include this module as a runtime-scope dependency in Maven or other
 build tools alike. The usual [elf4j-impl configurations](https://github.com/elf4j/elf4j-impl#configuration) apply.
