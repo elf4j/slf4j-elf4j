@@ -1,11 +1,12 @@
 # slf4j-elf4j
 
-An [SLF4J](https://www.slf4j.org/) binding to use [elf4j-impl](https://github.com/elf4j/elf4j-impl) logging service
+An [SLF4J](https://www.slf4j.org/) binding to use the [elf4j-impl-core](https://github.com/elf4j/elf4j-impl-core)
+logging library
 
 ## User Story
 
 As an [SLF4J](https://www.slf4j.org/) logging API user, I want to opt to
-use [elf4j-impl](https://github.com/elf4j/elf4j-impl) as the runtime logging service provider.
+use [elf4j-impl-core](https://github.com/elf4j/elf4j-impl-core) as the runtime logging engine.
 
 ## Prerequisite
 
