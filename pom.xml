@@ -31,7 +31,7 @@
 
     <groupId>io.github.elf4j</groupId>
     <artifactId>slf4j-elf4j</artifactId>
-    <version>0.2.3</version>
+    <version>0.2.4</version>
     <packaging>jar</packaging>
     <name>slf4j-elf4j</name>
     <description>SLF4J binding to use ELF4J native logging implementation</description>
@@ -72,7 +72,7 @@
         <dependency>
             <groupId>io.github.elf4j</groupId>
             <artifactId>elf4j-impl-core</artifactId>
-            <version>0.2.3</version>
+            <version>0.3.0</version>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
