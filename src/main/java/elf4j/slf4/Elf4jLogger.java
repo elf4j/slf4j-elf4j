@@ -67,7 +67,7 @@ public class Elf4jLogger implements Logger, LoggingEventAware {
 
     @Override
     public String getName() {
-        return nativeLogger.getName();
+        return nativeLogger.getOwnerClassName();
     }
 
     @Override
