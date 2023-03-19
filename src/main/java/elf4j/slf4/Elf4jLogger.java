@@ -39,8 +39,8 @@ import java.util.EnumMap;
  *
  */
 public class Elf4jLogger implements Logger, LoggingEventAware {
-    private static final Class<?> LOGGING_SERVICE_INTERFACE_SLF4J_FLUENT_API = DefaultLoggingEventBuilder.class;
-    private static final Class<?> LOGGING_SERVICE_INTERFACE_SLF4J_LEGACY_API = Elf4jLogger.class;
+    private static final Class<?> LOGGING_SERVICE_CLASS_SLF4J_FLUENT_API = DefaultLoggingEventBuilder.class;
+    private static final Class<?> LOGGING_SERVICE_CLASS_SLF4J_LEGACY_API = Elf4jLogger.class;
     private static final EnumMap<org.slf4j.event.Level, Level> SLF4J_EVENT_TO_ELF4J_LEVEL_MAP =
             new EnumMap<>(org.slf4j.event.Level.class);
 
@@ -373,14 +373,14 @@ public class Elf4jLogger implements Logger, LoggingEventAware {
     @Override
     public void log(LoggingEvent event) {
         service(nativeLogger.atLevel(translate(event.getLevel())),
-                LOGGING_SERVICE_INTERFACE_SLF4J_FLUENT_API,
+                LOGGING_SERVICE_CLASS_SLF4J_FLUENT_API,
                 event.getThrowable(),
                 event.getMessage(),
                 event.getArgumentArray());
     }
 
     private void elf4jLog(Level elf4jLevel, Throwable t, String msg, Object... args) {
-        service(nativeLogger.atLevel(elf4jLevel), LOGGING_SERVICE_INTERFACE_SLF4J_LEGACY_API, t, msg, args);
+        service(nativeLogger.atLevel(elf4jLevel), LOGGING_SERVICE_CLASS_SLF4J_LEGACY_API, t, msg, args);
     }
 
     private boolean isEnabled(Level elf4jLevel) {

@@ -34,8 +34,8 @@ import org.slf4j.LoggerFactory;
  *
  */
 public class Elf4jLoggerFactory implements ILoggerFactory {
-    private static final Class<LoggerFactory> LOGGING_SERVICE_ACCESS_INTERFACE = LoggerFactory.class;
-    private final NativeLoggerFactory nativeLoggerFactory = new NativeLoggerFactory(LOGGING_SERVICE_ACCESS_INTERFACE);
+    private static final Class<LoggerFactory> LOGGING_SERVICE_ACCESS_CLASS = LoggerFactory.class;
+    private final NativeLoggerFactory nativeLoggerFactory = new NativeLoggerFactory(LOGGING_SERVICE_ACCESS_CLASS);
 
     @Override
     public Logger getLogger(String name) {
