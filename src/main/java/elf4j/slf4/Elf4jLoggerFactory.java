@@ -30,15 +30,23 @@ import org.slf4j.ILoggerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  *
  */
 public class Elf4jLoggerFactory implements ILoggerFactory {
     private static final Class<LoggerFactory> LOGGING_SERVICE_ACCESS_CLASS = LoggerFactory.class;
-    private final NativeLoggerFactory nativeLoggerFactory = new NativeLoggerFactory(LOGGING_SERVICE_ACCESS_CLASS);
+    private final NativeLoggerFactory nativeLoggerFactory;
+    private final Map<String, Elf4jLogger> elf4jLoggerMap = new HashMap<>();
+
+    Elf4jLoggerFactory() {
+        nativeLoggerFactory = new NativeLoggerFactory(LOGGING_SERVICE_ACCESS_CLASS);
+    }
 
     @Override
     public Logger getLogger(String name) {
-        return new Elf4jLogger(nativeLoggerFactory.logger());
+        return elf4jLoggerMap.computeIfAbsent(name, k -> new Elf4jLogger(nativeLoggerFactory.logger()));
     }
 }

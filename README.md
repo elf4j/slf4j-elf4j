@@ -1,7 +1,7 @@
 # slf4j-elf4j
 
-An [SLF4J](https://www.slf4j.org/) binding to use the [elf4j-impl-core](https://github.com/elf4j/elf4j-impl-core)
-library as the runtime logging engine.
+An adapter to use the [elf4j-impl-core](https://github.com/elf4j/elf4j-impl-core) library as the runtime logging engine
+of [SLF4J](https://www.slf4j.org/).
 
 ## User Story
 
@@ -19,6 +19,6 @@ use [elf4j-impl-core](https://github.com/elf4j/elf4j-impl-core) as the runtime l
 
 ## Use it...
 
-Similar to other SLF4J compatible implementations, code against the SLF4J API, and include this module as a
-runtime-scope dependency in Maven or other build tools alike. The
+Similar to other SLF4J compatible implementations, code against the SLF4J API, and install this as a runtime-scope
+dependency in Maven or other build tools alike. The
 usual [elf4j-impl configurations](https://github.com/elf4j/elf4j-impl#configuration) apply.
