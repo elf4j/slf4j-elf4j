@@ -23,10 +23,10 @@
  *
  */
 
-package elf4j.slf4;
+package elf4j.engine.slf4;
 
 import elf4j.Level;
-import elf4j.impl.core.NativeLogger;
+import elf4j.engine.NativeLogger;
 import org.slf4j.Logger;
 import org.slf4j.Marker;
 import org.slf4j.event.LoggingEvent;

@@ -1,12 +1,12 @@
 # slf4j-elf4j
 
-An adapter to use the [elf4j-impl-core](https://github.com/elf4j/elf4j-impl-core) library as the runtime logging engine
+An adapter to use [elf4j-engine](https://github.com/elf4j/elf4j-engine) as the runtime logging engine
 of [SLF4J](https://www.slf4j.org/).
 
 ## User Story
 
 As an [SLF4J](https://www.slf4j.org/) logging API user, I want to opt to
-use [elf4j-impl-core](https://github.com/elf4j/elf4j-impl-core) as the runtime logging engine.
+use [elf4j-engine](https://github.com/elf4j/elf4j-engine) as the runtime logging engine.
 
 ## Prerequisite
 
@@ -20,5 +20,6 @@ use [elf4j-impl-core](https://github.com/elf4j/elf4j-impl-core) as the runtime l
 ## Use it...
 
 Similar to other SLF4J compatible implementations, code against the SLF4J API, and install this as a runtime-scope
-dependency in Maven or other build tools alike. The
-usual [elf4j-impl configurations](https://github.com/elf4j/elf4j-impl#configuration) apply.
+dependency in Maven or other build tools alike.
+
+The usual elf4j-engine [configuration](https://github.com/elf4j/elf4j-provider#configuration) applies.

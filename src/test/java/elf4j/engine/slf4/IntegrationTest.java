@@ -23,30 +23,24 @@
  *
  */
 
-package elf4j.slf4;
+package elf4j.engine.slf4;
 
-import elf4j.impl.core.NativeLoggerFactory;
-import org.slf4j.ILoggerFactory;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.HashMap;
-import java.util.Map;
+class IntegrationTest {
+    Logger logger = LoggerFactory.getLogger(IntegrationTest.class);
 
-/**
- *
- */
-public class Elf4jLoggerFactory implements ILoggerFactory {
-    private static final Class<LoggerFactory> LOGGING_SERVICE_ACCESS_CLASS = LoggerFactory.class;
-    private final NativeLoggerFactory nativeLoggerFactory;
-    private final Map<String, Elf4jLogger> elf4jLoggerMap = new HashMap<>();
-
-    Elf4jLoggerFactory() {
-        nativeLoggerFactory = new NativeLoggerFactory(LOGGING_SERVICE_ACCESS_CLASS);
-    }
-
-    @Override
-    public Logger getLogger(String name) {
-        return elf4jLoggerMap.computeIfAbsent(name, k -> new Elf4jLogger(nativeLoggerFactory.logger()));
+    @Test
+    void it() {
+        logger.info("Hello, {}!", "world");
+        String houstonMessage = "Houston, we don't have a problem";
+        logger.warn("And... " + houstonMessage, new Exception(houstonMessage));
+        logger.atDebug()
+                .setCause(new Exception("test fluent api ex message"))
+                .setMessage("testing slf4j {} api")
+                .addArgument("fluent")
+                .log();
     }
 }

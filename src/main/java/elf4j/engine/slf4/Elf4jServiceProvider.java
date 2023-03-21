@@ -23,24 +23,47 @@
  *
  */
 
-package elf4j.slf4;
+package elf4j.engine.slf4;
 
-import org.junit.jupiter.api.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.slf4j.ILoggerFactory;
+import org.slf4j.IMarkerFactory;
+import org.slf4j.helpers.BasicMarkerFactory;
+import org.slf4j.helpers.NOPMDCAdapter;
+import org.slf4j.spi.MDCAdapter;
+import org.slf4j.spi.SLF4JServiceProvider;
 
-class IntegrationTest {
-    Logger logger = LoggerFactory.getLogger(IntegrationTest.class);
+/**
+ *
+ */
+public class Elf4jServiceProvider implements SLF4JServiceProvider {
+    private static final String REQUESTED_API_VERSION = "2.0.99";
+    private ILoggerFactory loggerFactory;
+    private IMarkerFactory markerFactory;
+    private MDCAdapter mdcAdapter;
 
-    @Test
-    void it() {
-        logger.info("Hello, {}!", "world");
-        String houstonMessage = "Houston, we don't have a problem";
-        logger.warn("And... " + houstonMessage, new Exception(houstonMessage));
-        logger.atDebug()
-                .setCause(new Exception("test fluent api ex message"))
-                .setMessage("testing slf4j {} api")
-                .addArgument("fluent")
-                .log();
+    public ILoggerFactory getLoggerFactory() {
+        return loggerFactory;
+    }
+
+    @Override
+    public IMarkerFactory getMarkerFactory() {
+        return markerFactory;
+    }
+
+    @Override
+    public MDCAdapter getMDCAdapter() {
+        return mdcAdapter;
+    }
+
+    @Override
+    public String getRequestedApiVersion() {
+        return REQUESTED_API_VERSION;
+    }
+
+    @Override
+    public void initialize() {
+        loggerFactory = new Elf4jLoggerFactory();
+        markerFactory = new BasicMarkerFactory();
+        mdcAdapter = new NOPMDCAdapter();
     }
 }

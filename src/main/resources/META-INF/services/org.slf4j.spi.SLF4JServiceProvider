@@ -23,4 +23,4 @@
 #
 #
 
-elf4j.slf4.Elf4jServiceProvider
+elf4j.engine.slf4.Elf4jServiceProvider

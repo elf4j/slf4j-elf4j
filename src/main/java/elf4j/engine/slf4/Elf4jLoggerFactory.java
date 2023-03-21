@@ -23,47 +23,30 @@
  *
  */
 
-package elf4j.slf4;
+package elf4j.engine.slf4;
 
+import elf4j.engine.NativeLoggerFactory;
 import org.slf4j.ILoggerFactory;
-import org.slf4j.IMarkerFactory;
-import org.slf4j.helpers.BasicMarkerFactory;
-import org.slf4j.helpers.NOPMDCAdapter;
-import org.slf4j.spi.MDCAdapter;
-import org.slf4j.spi.SLF4JServiceProvider;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  *
  */
-public class Elf4jServiceProvider implements SLF4JServiceProvider {
-    private static final String REQUESTED_API_VERSION = "2.0.99";
-    private ILoggerFactory loggerFactory;
-    private IMarkerFactory markerFactory;
-    private MDCAdapter mdcAdapter;
+public class Elf4jLoggerFactory implements ILoggerFactory {
+    private static final Class<LoggerFactory> LOGGING_SERVICE_ACCESS_CLASS = LoggerFactory.class;
+    private final NativeLoggerFactory nativeLoggerFactory;
+    private final Map<String, Elf4jLogger> elf4jLoggerMap = new HashMap<>();
 
-    public ILoggerFactory getLoggerFactory() {
-        return loggerFactory;
+    Elf4jLoggerFactory() {
+        nativeLoggerFactory = new NativeLoggerFactory(LOGGING_SERVICE_ACCESS_CLASS);
     }
 
     @Override
-    public IMarkerFactory getMarkerFactory() {
-        return markerFactory;
-    }
-
-    @Override
-    public MDCAdapter getMDCAdapter() {
-        return mdcAdapter;
-    }
-
-    @Override
-    public String getRequestedApiVersion() {
-        return REQUESTED_API_VERSION;
-    }
-
-    @Override
-    public void initialize() {
-        loggerFactory = new Elf4jLoggerFactory();
-        markerFactory = new BasicMarkerFactory();
-        mdcAdapter = new NOPMDCAdapter();
+    public Logger getLogger(String name) {
+        return elf4jLoggerMap.computeIfAbsent(name, k -> new Elf4jLogger(nativeLoggerFactory.logger()));
     }
 }
