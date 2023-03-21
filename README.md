@@ -11,7 +11,6 @@ use [elf4j-engine](https://github.com/elf4j/elf4j-engine) as the runtime logging
 ## Prerequisite
 
 * Java 8 or better
-* SLF4J 2.x.x
 
 ## Get It...
 
