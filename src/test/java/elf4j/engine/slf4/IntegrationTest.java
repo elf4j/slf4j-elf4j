@@ -25,12 +25,18 @@
 
 package elf4j.engine.slf4;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 class IntegrationTest {
     Logger logger = LoggerFactory.getLogger(IntegrationTest.class);
+
+    @AfterEach
+    void afterEach() throws InterruptedException {
+        Thread.sleep(200);
+    }
 
     @Test
     void it() {
