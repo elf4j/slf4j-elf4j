@@ -55,7 +55,8 @@ public class Elf4jLogger implements Logger, LoggingEventAware {
     private final NativeLogger nativeLogger;
 
     /**
-     * @param nativeLogger wrapped elf4j-impl logger
+     * @param nativeLogger
+     *         wrapped elf4j-impl logger
      */
     public Elf4jLogger(NativeLogger nativeLogger) {
         this.nativeLogger = nativeLogger;
