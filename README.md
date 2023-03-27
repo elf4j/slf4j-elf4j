@@ -16,7 +16,7 @@ use [elf4j-engine](https://github.com/elf4j/elf4j-engine) as the runtime logging
 
 [![Maven Central](https://img.shields.io/maven-central/v/io.github.elf4j/slf4j-elf4j.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22io.github.elf4j%22%20AND%20a:%22slf4j-elf4j%22)
 
-## Use it...
+## Use It...
 
 Similar to other SLF4J compatible implementations, code against the SLF4J API, and install this as a runtime-scope
 dependency in Maven or other build tools alike:
