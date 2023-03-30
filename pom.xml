@@ -31,7 +31,7 @@
 
     <groupId>io.github.elf4j</groupId>
     <artifactId>slf4j-elf4j</artifactId>
-    <version>1.0.3</version>
+    <version>1.0.4</version>
     <packaging>jar</packaging>
     <name>slf4j-elf4j</name>
     <description>SLF4J binding to use ELF4J native logging implementation</description>
