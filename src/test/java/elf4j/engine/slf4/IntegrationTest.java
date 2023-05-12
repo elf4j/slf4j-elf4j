@@ -25,17 +25,20 @@
 
 package elf4j.engine.slf4;
 
+import elf4j.engine.service.util.MoreAwaitility;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.time.Duration;
+
 class IntegrationTest {
     Logger logger = LoggerFactory.getLogger(IntegrationTest.class);
 
     @AfterEach
-    void afterEach() throws InterruptedException {
-        Thread.sleep(200);
+    void afterEach() {
+        MoreAwaitility.suspend(Duration.ofMillis(200));
     }
 
     @Test
