@@ -25,21 +25,12 @@
 
 package elf4j.engine.slf4;
 
-import coco4j.MoreAwaitilities;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.time.Duration;
-
 class IntegrationTest {
     Logger logger = LoggerFactory.getLogger(IntegrationTest.class);
-
-    @AfterEach
-    void afterEach() {
-        MoreAwaitilities.suspend(Duration.ofMillis(200));
-    }
 
     @Test
     void it() {
