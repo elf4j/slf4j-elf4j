@@ -27,13 +27,12 @@ package elf4j.engine.slf4;
 
 import elf4j.Level;
 import elf4j.engine.NativeLogger;
+import java.util.EnumMap;
 import org.slf4j.Logger;
 import org.slf4j.Marker;
 import org.slf4j.event.LoggingEvent;
 import org.slf4j.spi.DefaultLoggingEventBuilder;
 import org.slf4j.spi.LoggingEventAware;
-
-import java.util.EnumMap;
 
 /**
  *
@@ -55,8 +54,7 @@ public class Elf4jLogger implements Logger, LoggingEventAware {
     private final NativeLogger nativeLogger;
 
     /**
-     * @param nativeLogger
-     *         wrapped elf4j-impl logger
+     * @param nativeLogger wrapped elf4j-impl logger
      */
     public Elf4jLogger(NativeLogger nativeLogger) {
         this.nativeLogger = nativeLogger;
@@ -68,7 +66,7 @@ public class Elf4jLogger implements Logger, LoggingEventAware {
 
     @Override
     public String getName() {
-        return nativeLogger.getOwnerClassName();
+        return nativeLogger.getDeclaringClassName();
     }
 
     @Override
@@ -373,7 +371,8 @@ public class Elf4jLogger implements Logger, LoggingEventAware {
 
     @Override
     public void log(LoggingEvent event) {
-        service(nativeLogger.atLevel(translate(event.getLevel())),
+        service(
+                nativeLogger.atLevel(translate(event.getLevel())),
                 LOGGING_SERVICE_CLASS_SLF4J_FLUENT_API,
                 event.getThrowable(),
                 event.getMessage(),
@@ -388,11 +387,8 @@ public class Elf4jLogger implements Logger, LoggingEventAware {
         return nativeLogger.atLevel(elf4jLevel).isEnabled();
     }
 
-    private void service(NativeLogger delegate,
-            Class<?> loggingServiceInterface,
-            Throwable t,
-            String msg,
-            Object... args) {
+    private void service(
+            NativeLogger delegate, Class<?> loggingServiceInterface, Throwable t, String msg, Object... args) {
         delegate.getLogService().log(delegate, loggingServiceInterface, t, msg, args);
     }
 }
