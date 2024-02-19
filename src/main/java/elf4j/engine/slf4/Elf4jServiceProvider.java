@@ -32,9 +32,7 @@ import org.slf4j.helpers.NOPMDCAdapter;
 import org.slf4j.spi.MDCAdapter;
 import org.slf4j.spi.SLF4JServiceProvider;
 
-/**
- *
- */
+/** */
 public class Elf4jServiceProvider implements SLF4JServiceProvider {
     private static final String REQUESTED_API_VERSION = "2.0.99";
     private ILoggerFactory loggerFactory;

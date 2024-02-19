@@ -34,9 +34,7 @@ import org.slf4j.event.LoggingEvent;
 import org.slf4j.spi.DefaultLoggingEventBuilder;
 import org.slf4j.spi.LoggingEventAware;
 
-/**
- *
- */
+/** */
 public class Elf4jLogger implements Logger, LoggingEventAware {
     private static final Class<?> LOGGING_SERVICE_CLASS_SLF4J_FLUENT_API = DefaultLoggingEventBuilder.class;
     private static final Class<?> LOGGING_SERVICE_CLASS_SLF4J_LEGACY_API = Elf4jLogger.class;
@@ -53,9 +51,7 @@ public class Elf4jLogger implements Logger, LoggingEventAware {
 
     private final NativeLogger nativeLogger;
 
-    /**
-     * @param nativeLogger wrapped elf4j-impl logger
-     */
+    /** @param nativeLogger wrapped elf4j-impl logger */
     public Elf4jLogger(NativeLogger nativeLogger) {
         this.nativeLogger = nativeLogger;
     }
@@ -388,7 +384,11 @@ public class Elf4jLogger implements Logger, LoggingEventAware {
     }
 
     private void service(
-            NativeLogger delegate, Class<?> loggingServiceInterface, Throwable t, String msg, Object... args) {
+            @lombok.NonNull NativeLogger delegate,
+            Class<?> loggingServiceInterface,
+            Throwable t,
+            String msg,
+            Object... args) {
         delegate.getLogService().log(delegate, loggingServiceInterface, t, msg, args);
     }
 }
